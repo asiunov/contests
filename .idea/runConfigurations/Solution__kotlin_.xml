@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Solution (kotlin)" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="SolutionKt" />
+    <module name="kotlin" />
+    <option name="PROGRAM_PARAMETERS" value="DEBUG_MODE" />
+    <shortenClasspath name="NONE" />
+    <option name="VM_PARAMETERS" value="-Xmx2048m -Xss1024m" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
