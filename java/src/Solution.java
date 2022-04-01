@@ -13,7 +13,6 @@ import java.util.Objects;
 import java.util.StringTokenizer;
 import java.util.concurrent.Callable;
 
-// VM options: -Xmx2048m -Xss1024m
 public class Solution {
     private void solve() throws IOException {
         println(nextInt());

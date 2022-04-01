@@ -8,7 +8,6 @@ import java.util.Arrays
 import java.util.Objects
 import java.util.StringTokenizer
 
-// VM options: -Xmx2048m -Xss1024m
 object Solution {
   private val runNTestsInProd = true
 
