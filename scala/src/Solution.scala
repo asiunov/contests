@@ -4,7 +4,6 @@ import java.io.InputStreamReader
 import java.io.PrintWriter
 import java.time.Clock
 import java.time.LocalDateTime
-import java.util
 import java.util.Arrays
 import java.util.Objects
 import java.util.StringTokenizer
@@ -83,6 +82,16 @@ object Solution {
     }
   }
 
+  private val printCaseNumber = false
+  private val assertInProd = false
+
+  private val logToFile = false
+  private val readFromConsoleInDebug = false
+  private val writeToConsoleInDebug = true
+  private val testTimer = false
+
+  private var isDebug: java.lang.Boolean = _
+
   private def assertPredicate(p: Boolean, message: String = ""): Unit =
     if ((isDebug || assertInProd) && !p) {
       throw new RuntimeException(message)
@@ -98,25 +107,17 @@ object Solution {
       throw new RuntimeException("assertEqual: " + expected + " != " + actual)
     }
 
-  private val printCaseNumber = false
-  private val assertInProd = false
 
-  private val logToFile = false
-  private val readFromConsoleInDebug = false
-  private val writeToConsoleInDebug = true
-  private val testTimer = false
-
-  private var isDebug: java.lang.Boolean = _
   private var log: PrintWriter = _
   private var clock: Clock = _
 
-  private def log(objects: Any*): Unit = _log(printDelimiter = true, objects)
+  private def log(objects: Any*): Unit = _log(delimiter = " ", objects)
 
-  private def logNoDelimiter(objects: Any*): Unit = _log(printDelimiter = false, objects)
+  private def logNoDelimiter(objects: Any*): Unit = _log(delimiter = "", objects)
 
-  private def _log(printDelimiter: Boolean, objects: Seq[Any]): Unit =
+  private def _log(delimiter: String, objects: Seq[Any]): Unit =
     if (isDebug) {
-      log.println(s"${LocalDateTime.now(clock)} - ${if (printDelimiter) objects.mkString(" ") else objects.mkString}")
+      log.println(objects.mkString(start = s"${LocalDateTime.now(clock)} - ", sep = delimiter, end = ""))
       log.flush()
     }
 
@@ -126,7 +127,7 @@ object Solution {
       try {
         f
       } finally {
-        logNoDelimiter(s"Timer[$label]: ${(System.nanoTime - startTime) % .6f}s")
+        logNoDelimiter(f"Timer[$label]: ${(System.nanoTime - startTime) / 1e9}%.6fs")
       }
     } else {
       f
@@ -135,7 +136,7 @@ object Solution {
   def main(args: Array[String]): Unit = {
     isDebug = args.contains("DEBUG_MODE")
     if (isDebug) {
-      log = if (logToFile) new PrintWriter("logs/log_" + System.currentTimeMillis + ".txt") else new PrintWriter(System.out)
+      log = if (logToFile) new PrintWriter(s"logs/log_${System.currentTimeMillis}.txt") else new PrintWriter(System.out)
       clock = Clock.systemDefaultZone
     }
     new Runner().run()

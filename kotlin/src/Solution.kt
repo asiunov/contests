@@ -3,10 +3,14 @@ import java.io.FileInputStream
 import java.io.PrintWriter
 import java.time.Clock
 import java.time.LocalDateTime
+import java.util.Arrays
+import java.util.Objects
 import java.util.StringTokenizer
 
 // VM options: -Xmx2048m -Xss1024m
 class Solution {
+    private val runNTestsInProd = true
+
     private fun solve() {
         println(nextInt())
     }
@@ -21,14 +25,18 @@ class Solution {
         timer("total") {
             val t = if (runNTestsInProd || isDebug!!) nextInt() else 1
             for (i in 0 until t) {
-                timer("test #${i + 1}") {
-                    if (printCaseNumber) {
-                        out!!.print("Case #${i + 1}: ")
+                if (printCaseNumber) {
+                    out!!.print("Case #${i + 1}: ")
+                }
+                if (testTimer) {
+                    timer("test #${i + 1}") {
+                        solve()
                     }
+                } else {
                     solve()
-                    if (isDebug!!) {
-                        out!!.flush()
-                    }
+                }
+                if (isDebug!!) {
+                    out!!.flush()
                 }
             }
         }
@@ -71,25 +79,15 @@ class Solution {
     }
 
     companion object {
-        private const val runNTestsInProd = false
         private const val printCaseNumber = false
         private const val assertInProd = false
 
         private const val logToFile = false
         private const val readFromConsoleInDebug = false
         private const val writeToConsoleInDebug = true
+        private const val testTimer = false
 
         private var isDebug: Boolean? = null
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-            isDebug = args.contains("DEBUG_MODE")
-            if (isDebug!!) {
-                log = if (logToFile) PrintWriter("logs/log_${System.currentTimeMillis()}.txt") else PrintWriter(System.out)
-                clock = Clock.systemDefaultZone()
-            }
-            Solution().run()
-        }
 
         private fun assertPredicate(p: Boolean, message: String? = null) {
             if ((isDebug!! || assertInProd) && !p) {
@@ -126,12 +124,24 @@ class Solution {
         private fun <T> timer(label: String, f: () -> T): T {
             return if (isDebug!!) {
                 val startTime = System.nanoTime()
-                val res = f()
-                logNoDelimiter("Timer[%s]: %.6fs".format(label, (System.nanoTime() - startTime) / 1000000000.0))
-                res
+                try {
+                    f()
+                } finally {
+                    logNoDelimiter("Timer[%s]: %.6fs".format(label, (System.nanoTime() - startTime) / 1e9))
+                }
             } else {
                 f()
             }
+        }
+
+        @JvmStatic
+        fun main(args: Array<String>) {
+            isDebug = args.contains("DEBUG_MODE")
+            if (isDebug!!) {
+                log = if (logToFile) PrintWriter("logs/log_${System.currentTimeMillis()}.txt") else PrintWriter(System.out)
+                clock = Clock.systemDefaultZone()
+            }
+            Solution().run()
         }
     }
 }
