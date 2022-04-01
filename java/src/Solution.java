@@ -59,7 +59,9 @@ public class Solution {
                 } else {
                     solve();
                 }
-                out.flush();
+                if (isDebug) {
+                    out.flush();
+                }
             }
         }
 

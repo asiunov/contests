@@ -26,7 +26,9 @@ class Solution {
                         out!!.print("Case #${i + 1}: ")
                     }
                     solve()
-                    out!!.flush()
+                    if (isDebug!!) {
+                        out!!.flush()
+                    }
                 }
             }
         }
