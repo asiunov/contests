@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Solution (scala)" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="Solution" />
+    <option name="MAIN_CLASS_NAME" value="ScalaSolution" />
     <module name="scala" />
     <option name="PROGRAM_PARAMETERS" value="DEBUG_MODE" />
     <option name="VM_PARAMETERS" value="-Xmx2048m -Xss1024m" />

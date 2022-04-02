@@ -7,7 +7,7 @@ import java.util.Arrays
 import java.util.Objects
 import java.util.StringTokenizer
 
-class Solution {
+class KotlinSolution {
     private val runNTestsInProd = true
 
     private fun solve() {
@@ -140,9 +140,9 @@ class Solution {
                 log = if (logToFile) PrintWriter("logs/log_${System.currentTimeMillis()}.txt") else PrintWriter(System.out)
                 clock = Clock.systemDefaultZone()
             }
-            Solution().run()
+            KotlinSolution().run()
         }
     }
 }
 
-fun main(args: Array<String>) = Solution.main(args)
+fun main(args: Array<String>) = KotlinSolution.main(args)

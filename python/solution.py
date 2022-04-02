@@ -1,12 +1,11 @@
 from __future__ import annotations
 
-import os
 import sys
 import time
 from contextlib import ContextDecorator, contextmanager
 from typing import List
 
-IS_DEBUG = bool(os.environ.get("LOCAL_RUN"))
+IS_DEBUG = "DEBUG_MODE" in sys.argv
 
 RUN_N_TESTS_IN_PROD = True
 

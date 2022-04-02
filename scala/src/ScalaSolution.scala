@@ -8,7 +8,7 @@ import java.util.Arrays
 import java.util.Objects
 import java.util.StringTokenizer
 
-object Solution {
+object ScalaSolution {
   private val runNTestsInProd = true
 
   class Runner() {
