@@ -135,7 +135,7 @@ object ScalaSolution {
   def main(args: Array[String]): Unit = {
     isDebug = args.contains("DEBUG_MODE")
     if (isDebug) {
-      log = if (logToFile) new PrintWriter(s"logs/log_${System.currentTimeMillis}.txt") else new PrintWriter(System.out)
+      log = if (logToFile) new PrintWriter(s"logs/sc_solution_${System.currentTimeMillis}.log") else new PrintWriter(System.out)
       clock = Clock.systemDefaultZone
     }
     new Runner().run()

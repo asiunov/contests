@@ -35,7 +35,7 @@ public class Solution {
     public static void main(String[] args) throws Exception {
         isDebug = Arrays.asList(args).contains("DEBUG_MODE");
         if (isDebug) {
-            log = logToFile ? new PrintWriter("logs/log_" + System.currentTimeMillis() + ".txt") : new PrintWriter(System.out);
+            log = logToFile ? new PrintWriter("logs/j_solution_" + System.currentTimeMillis() + ".log") : new PrintWriter(System.out);
             clock = Clock.systemDefaultZone();
         }
         new Solution().run();

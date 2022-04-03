@@ -137,7 +137,7 @@ class KotlinSolution {
         fun main(args: Array<String>) {
             isDebug = args.contains("DEBUG_MODE")
             if (isDebug!!) {
-                log = if (logToFile) PrintWriter("logs/log_${System.currentTimeMillis()}.txt") else PrintWriter(System.out)
+                log = if (logToFile) PrintWriter("logs/kt_solution_${System.currentTimeMillis()}.log") else PrintWriter(System.out)
                 clock = Clock.systemDefaultZone()
             }
             KotlinSolution().run()
