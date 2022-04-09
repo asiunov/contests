@@ -8,10 +8,13 @@ import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Random;
 import java.util.StringTokenizer;
-import java.util.concurrent.Callable;
+import java.util.TreeMap;
+import java.util.function.Supplier;
 
 public class Solution {
     private void solve() throws IOException {
@@ -139,7 +142,7 @@ public class Solution {
         }
     }
 
-    private static void assertEqual(int expected, int actual) {
+    private static <T> void assertEqual(T expected, T actual) {
         if ((isDebug || assertInProd) && !Objects.equals(actual, expected)) {
             throw new RuntimeException("assertEqual: " + expected + " != " + actual);
         }
@@ -193,13 +196,13 @@ public class Solution {
         }
     }
 
-    private static <T> T timer(String label, Callable<T> f) throws Exception {
+    private static <T> T timer(String label, Supplier<T> f) throws Exception {
         if (isDebug) {
             try (Timer timer = new Timer(label)) {
-                return f.call();
+                return f.get();
             }
         } else {
-            return f.call();
+            return f.get();
         }
     }
 }

@@ -100,7 +100,7 @@ class KotlinSolution {
             }
         }
 
-        private fun assertEqual(expected: Int, actual: Int) {
+        private fun <T> assertEqual(expected: T, actual: T) {
             if ((isDebug!! || assertInProd) && actual != expected) {
                 throw RuntimeException("assertEqual: $expected != $actual")
             }

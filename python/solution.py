@@ -58,12 +58,12 @@ def run() -> None:
     __output_file.close()
 
 
-def fprint(*objects):
-  print(*objects, end="", file=__output_file)
+def fprint(*objects, **kwargs):
+  print(*objects, end="", file=__output_file, **kwargs)
 
 
-def fprintln(*objects):
-  print(*objects, file=__output_file)
+def fprintln(*objects, **kwargs):
+  print(*objects, file=__output_file, **kwargs)
 
 
 def next_line() -> str:

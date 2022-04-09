@@ -101,7 +101,7 @@ object ScalaSolution {
       throw new RuntimeException("assertNotEqual: " + unexpected + " == " + actual)
     }
 
-  private def assertEqual(expected: Int, actual: Int): Unit =
+  private def assertEqual[T](expected: T, actual: T): Unit =
     if ((isDebug || assertInProd) && actual != expected) {
       throw new RuntimeException("assertEqual: " + expected + " != " + actual)
     }
