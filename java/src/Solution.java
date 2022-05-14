@@ -4,16 +4,20 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.math.BigInteger;
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.function.Supplier;
 
 public class Solution {
@@ -86,9 +90,13 @@ public class Solution {
     }
 
     private int[] nextIntArray(int n) throws IOException {
+        return nextIntArray(n, 0);
+    }
+
+    private int[] nextIntArray(int n, int delta) throws IOException {
         int[] res = new int[n];
         for (int i = 0; i < n; i++) {
-            res[i] = nextInt();
+            res[i] = nextInt() + delta;
         }
         return res;
     }

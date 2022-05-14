@@ -49,10 +49,10 @@ object ScalaSolution {
 
     private def println(objects: Any*): Unit = out.println(objects.mkString(" "))
 
-    private def nextIntArray(n: Int): Array[Int] = {
+    private def nextIntArray(n: Int, delta: Int = 0): Array[Int] = {
       val res = Array.ofDim[Int](n)
       for (i <- res.indices) {
-        res(i) = nextInt()
+        res(i) = nextInt() + delta
       }
       res
     }

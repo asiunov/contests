@@ -46,10 +46,10 @@ class KotlinSolution {
 
     private fun println(vararg objects: Any) = out!!.println(objects.joinToString(separator = " ") { x -> x.toString() })
 
-    private fun nextIntArray(n: Int): IntArray {
+    private fun nextIntArray(n: Int, delta: Int = 0): IntArray {
         val res = IntArray(n)
         for (i in 0 until n) {
-            res[i] = nextInt()
+            res[i] = nextInt() + delta
         }
         return res
     }
